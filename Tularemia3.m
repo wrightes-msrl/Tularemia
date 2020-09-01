@@ -30,13 +30,13 @@ clear all; close all; clc;
 % out of 40 different samples of size 30, each taken from a habitat in a moderate 
 % climate.
 
-data=csvread('DataExample.csv')
+data=csvread('DataExample.csv');
 %% 
 % Read an experimental data set containing counts of rabbits diagnosed with 
 % tularemia out of 40 different samples of size 30, each taken from a habitat 
 % in a colder climate.
 
-ExperimentalData=csvread('ExperimentalDataExample.csv')
+ExperimentalData=csvread('ExperimentalDataExample.csv');
 %% Descriptive Statistics
 % Compute some of the more useful descriptive statistics. 
 % 
@@ -49,12 +49,13 @@ Mode=mode(data)
 %% 
 % The three quartiles divide the sorted data set into four equal parts
 
-q=quantile(data,[0.25 0.50 0.75])
+Q=quantile(data,[0.25 0.50 0.75])
+InterQuartileRange=Q(3)-Q(1)
 %% 
 % The maximum and minumum of the data set give us a measure of the extent covered 
 % by our data set. We can, in turn, use these to find the range of our data set.
 
-Minumum=min(data)
+Minimum=min(data)
 Maximum=max(data)
 Range=Maximum-Minimum
 %% 
@@ -146,7 +147,7 @@ MEAN=n*K/N;
 VAR=(n*K/N)*((N-K)/N)*((N-n)/(N-1));
 SKEWNESS=((N-2*K)*sqrt(N-1)*(N-2*n))/(sqrt(n*K*(N-K)*(N-n))*(N-2));
 KURTOSIS=((N-1)*(N^2)*(N*(N+1)-6*K*(N-K)-6*n*(N-n))+6*n*K*(N-K)*(N-n)*(5*N-6))/(n*K*(N-K)*(N-n)*(N-2)*(N-3))+3;
-shapes=array2table([MEAN VAR SKEWNESS KURTOSIS; Mean PopulationVariance Skewness Kurtosis],'VariableNames',{'Mean','Variance','Skewness','Kurtosis'},'RowNames',{'Theoretical','Empirical'})
+shapes=array2table([MEAN VAR SKEWNESS KURTOSIS; Mean Variance Skewness Kurtosis],'VariableNames',{'Mean','Variance','Skewness','Kurtosis'},'RowNames',{'Theoretical','Empirical'})
 % Chi-squared goodness of fit test
 % Count the frequencies of each outcome $0\le x\le 30$
 % 
