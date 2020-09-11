@@ -189,8 +189,9 @@ text(chi2stat+.5,chi2pdf(chi2stat,df),strjoin({'\chi^2=',num2str(chi2stat)}))
 % Assess the fit by computing a p value for the test statistic.
 
 chi2P=chi2cdf(chi2stat,df,'upper')
-%% Hypothesis Testing (exact test)
-% We are performing a testA in the lower tail here because we are testing for 
+%% Hypothesis Testing 
+% Discrete Test
+% We are performing a test in the lower tail here because we are testing for 
 % a significant _decrease_.
 
 PDec=hygecdf(ExperimentalData,N,K,n) 
@@ -199,9 +200,8 @@ PDec=hygecdf(ExperimentalData,N,K,n)
 % a significant _increase_.
 
 PInc=1-hygecdf(ExperimentalData-1,N,K,n) 
-%% 
-% Hypothesis Testing (t test for significant change in experimental sample mean)
-
+%%
+T test for significant change in experimental sample mean
 xb=mean(ExperimentalData);      %experimental sample mean
 s=std(ExperimentalData);        %experimental sample std. dev.
 ns=length(ExperimentalData);    %experimental sample size
